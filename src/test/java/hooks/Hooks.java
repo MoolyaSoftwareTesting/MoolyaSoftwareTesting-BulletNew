@@ -81,13 +81,18 @@ public class Hooks {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", platformName);
-//        capabilities.setCapability("appium:app", System.getProperty("appPath"));
         capabilities.setCapability("appium:deviceName", System.getProperty("deviceName"));
 
         if (executionMode.equalsIgnoreCase("local")) {
             if (platformName.equalsIgnoreCase("Android")) {
                 capabilities.setCapability("appium:automationName", "uiAutomator2");
-                capabilities.setCapability("appium:appPackage","com.bulletshorts");
+                String appPath = System.getProperty("appPath");
+                if(appPath == null || !(new File(appPath).exists())) {
+                    throw new RuntimeException("APK path is invalid or missing: " + appPath);
+                }
+                capabilities.setCapability("appium:app", appPath);
+
+                capabilities.setCapability("appium:" + "appPackage","com.bulletshorts");
                 capabilities.setCapability("appium:appActivity","com.bullet.MainActivity");
             } else if (platformName.equalsIgnoreCase("iOS")) {
                 capabilities.setCapability("appium:automationName", "xcuitest");
