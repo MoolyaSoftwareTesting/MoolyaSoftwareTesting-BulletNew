@@ -92,8 +92,8 @@ public class Hooks {
                 }
                 capabilities.setCapability("appium:app", appPath);
 
-                capabilities.setCapability("appium:" + "appPackage","com.bulletshorts");
-                capabilities.setCapability("appium:appActivity","com.bullet.MainActivity");
+//                capabilities.setCapability("appium:" + "appPackage","com.bulletshorts");
+//                capabilities.setCapability("appium:appActivity","com.bullet.MainActivity");
             } else if (platformName.equalsIgnoreCase("iOS")) {
                 capabilities.setCapability("appium:automationName", "xcuitest");
                 capabilities.setCapability("appium:udid", "6AF6C6C9-B963-4CE2-ADE6-D2F8E4CFCFBA");
