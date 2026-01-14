@@ -11,7 +11,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.AfterClass;
 import pages.*;
 import utilities.ConfigLoader;
 import utilities.CredsLoader;
@@ -25,13 +24,11 @@ import java.time.Duration;
 public class Hooks {
     private AppiumDriver driver;
     private String executionMode;
-    private static String buildName;
     private final TestContext context;
 
     public Hooks(TestContext context) {
         this.context = context;
     }
-
 
     @Before
     public void setUp(Scenario scenario) throws MalformedURLException {
@@ -40,6 +37,8 @@ public class Hooks {
         context.scenario = scenario;
         initializeDriver();
         context.driver = driver;
+
+        // Initialize all pages
         context.loginPage = new LoginPage(context.driver);
         context.emailNavigatorPage = new EmailNavigatorPage(context.driver);
         context.welcomePage = new WelcomePage(context.driver);
@@ -57,32 +56,22 @@ public class Hooks {
         context.paymentsAndCoinsPages = new PaymentsAndCoinsPages(context.driver);
     }
 
-//    @After
-//    public void tearDown(Scenario scenario) throws IOException {
-//        if (scenario.isFailed()) {
-//            File sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-//            byte[] fileContent = FileUtils.readFileToByteArray(sourcePath);
-//            scenario.attach(fileContent, "image/png", "image");
-//        }
-@After
-public void tearDown(Scenario scenario) throws IOException {
-    if (scenario.isFailed() && driver != null) {
-        try {
-            File sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            byte[] fileContent = FileUtils.readFileToByteArray(sourcePath);
-            scenario.attach(fileContent, "image/png", "image");
-        } catch (Exception e) {
-            System.out.println("Could not capture screenshot: " + e.getMessage());
-        }
-    }
-
-
-
-            if (driver != null) {
-                driver.quit();
-                driver = null; // prevents re-use of dead driver
+    @After
+    public void tearDown(Scenario scenario) throws IOException {
+        if (scenario.isFailed() && driver != null) {
+            try {
+                File sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+                byte[] fileContent = FileUtils.readFileToByteArray(sourcePath);
+                scenario.attach(fileContent, "image/png", "image");
+            } catch (Exception e) {
+                System.out.println("Could not capture screenshot: " + e.getMessage());
             }
+        }
 
+        if (driver != null) {
+            driver.quit();
+            driver = null; // prevents re-use of dead driver
+        }
     }
 
     public void initializeDriver() throws MalformedURLException {
@@ -96,46 +85,54 @@ public void tearDown(Scenario scenario) throws IOException {
 
         if (executionMode.equalsIgnoreCase("local")) {
             if (platformName.equalsIgnoreCase("Android")) {
-                capabilities.setCapability("appium:automationName", "uiAutomator2");
+                capabilities.setCapability("appium:automationName", "UiAutomator2");
                 String appPath = System.getProperty("appPath");
-                if(appPath == null || appPath.trim().isEmpty()) {
+                if (appPath == null || appPath.trim().isEmpty()) {
                     System.out.println("WARNING: No appPath provided, skipping app capability");
                 } else if (!(new File(appPath).exists())) {
                     System.out.println("WARNING: APK file not found at: " + appPath);
                 } else {
                     capabilities.setCapability("appium:app", appPath);
                 }
-//                String appPath = System.getProperty("appPath");
-//                if(appPath == null || !(new File(appPath).exists())) {
-//                    throw new RuntimeException("APK path is invalid or missing: " + appPath);
-//                }
-//                capabilities.setCapability("appium:app", appPath);
-
-//                capabilities.setCapability("appium:" + "appPackage","com.bulletshorts");
-//                capabilities.setCapability("appium:appActivity","com.bullet.MainActivity");
+                driver = new AndroidDriver(new URL("http://localhost:4723"), capabilities);
             } else if (platformName.equalsIgnoreCase("iOS")) {
-                capabilities.setCapability("appium:automationName", "xcuitest");
+                capabilities.setCapability("appium:automationName", "XCUITest");
                 capabilities.setCapability("appium:udid", "6AF6C6C9-B963-4CE2-ADE6-D2F8E4CFCFBA");
                 capabilities.setCapability("appium:noReset", true);
                 capabilities.setCapability("appium:forceAppLaunch", true);
-//            capabilities.setCapability("appium:app", "com.example.apple-samplecode.UICatalog");
-            }
-
-            capabilities.setCapability("appium:newCommandTimeout", 300);
-            if(platformName.equalsIgnoreCase("Android")){
-
-//            if(System.getProperty("platformName").equalsIgnoreCase("Android")){
-                driver = new AndroidDriver(new URL("http://localhost:4723"), capabilities);
-            }else{
                 driver = new IOSDriver(new URL("http://localhost:4723"), capabilities);
             }
-
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
         } else if (executionMode.equalsIgnoreCase("BrowserStack")) {
-            //BrowserStack capabilities
+
+            DesiredCapabilities caps = new DesiredCapabilities();
+
+            caps.setCapability("platformName", "Android");
+            caps.setCapability("deviceName", "Google Pixel 7");
+            caps.setCapability("platformVersion", "13.0");
+            caps.setCapability("appium:automationName", "UiAutomator2");
+            caps.setCapability("appium:newCommandTimeout", 300);
+
+            // BrowserStack uploaded app ID
+            caps.setCapability("app", "bs://c6d5196f76dd2c9e326d5b278283a306e7f6b758");
+
+            // BrowserStack credentials (from Jenkins)
+            caps.setCapability("browserstack.user", System.getenv("BROWSERSTACK_USERNAME"));
+            caps.setCapability("browserstack.key", System.getenv("BROWSERSTACK_ACCESS_KEY"));
+
+            // Optional metadata
+            caps.setCapability("project", "Bullet Automation");
+            caps.setCapability("build", "Bullet Android Build");
+            caps.setCapability("name", context.scenario.getName());
+
+            driver = new AndroidDriver(
+                    new URL("https://hub-cloud.browserstack.com/wd/hub"),
+                    caps
+            );
+
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
         }
 
         System.out.println("driver initialization completed******************");
     }
-
 }
