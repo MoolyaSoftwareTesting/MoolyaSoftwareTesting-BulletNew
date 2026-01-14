@@ -76,21 +76,29 @@ public class Hooks {
 
     public void initializeDriver() throws MalformedURLException {
         System.out.println("driver initialization started******************");
-        executionMode = System.getProperty("executionMode");
-        String platformName = System.getProperty("platformName");
+        executionMode = System.getProperty("executionMode", "local");
+        String platformName = System.getProperty("platformName", "Android");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", platformName);
-        capabilities.setCapability("appium:deviceName", System.getProperty("deviceName"));
+        capabilities.setCapability("appium:deviceName", System.getProperty("deviceName", "Testdevice"));
 
         if (executionMode.equalsIgnoreCase("local")) {
             if (platformName.equalsIgnoreCase("Android")) {
                 capabilities.setCapability("appium:automationName", "uiAutomator2");
                 String appPath = System.getProperty("appPath");
-                if(appPath == null || !(new File(appPath).exists())) {
-                    throw new RuntimeException("APK path is invalid or missing: " + appPath);
+                if(appPath == null || appPath.trim().isEmpty()) {
+                    System.out.println("WARNING: No appPath provided, skipping app capability");
+                } else if (!(new File(appPath).exists())) {
+                    System.out.println("WARNING: APK file not found at: " + appPath);
+                } else {
+                    capabilities.setCapability("appium:app", appPath);
                 }
-                capabilities.setCapability("appium:app", appPath);
+//                String appPath = System.getProperty("appPath");
+//                if(appPath == null || !(new File(appPath).exists())) {
+//                    throw new RuntimeException("APK path is invalid or missing: " + appPath);
+//                }
+//                capabilities.setCapability("appium:app", appPath);
 
 //                capabilities.setCapability("appium:" + "appPackage","com.bulletshorts");
 //                capabilities.setCapability("appium:appActivity","com.bullet.MainActivity");
@@ -103,8 +111,9 @@ public class Hooks {
             }
 
             capabilities.setCapability("appium:newCommandTimeout", 300);
+            if(platformName.equalsIgnoreCase("Android")){
 
-            if(System.getProperty("platformName").equalsIgnoreCase("Android")){
+//            if(System.getProperty("platformName").equalsIgnoreCase("Android")){
                 driver = new AndroidDriver(new URL("http://localhost:4723"), capabilities);
             }else{
                 driver = new IOSDriver(new URL("http://localhost:4723"), capabilities);
