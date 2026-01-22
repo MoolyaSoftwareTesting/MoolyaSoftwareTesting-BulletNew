@@ -4,4 +4,3 @@ Feature: Welcome Feature
   Scenario: Verify whether user is able to navigate through Welcome screens
     Given User click the Welcome arrows
     Then User should select email icon
-    And user should enter password

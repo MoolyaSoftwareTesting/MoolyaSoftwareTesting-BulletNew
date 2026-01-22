@@ -33,7 +33,5 @@ public class WelcomeStepdefs {
        welcomePage.clickWelcomeArrow();
     }
 
-    @And("user should enter password")
-    public void userShouldEnterPassword() {
-    }
+
 }
