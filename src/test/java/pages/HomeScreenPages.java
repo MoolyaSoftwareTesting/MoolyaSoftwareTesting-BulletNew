@@ -28,7 +28,7 @@ import java.util.*;
 public class HomeScreenPages extends BasePage {
     @AndroidFindBy( xpath = "//android.widget.TextView[@text=\"Home\"]")
     public WebElement HomeNavClick;
-    @AndroidFindBy( xpath = "//Q0.s0/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View[1]")
+    @AndroidFindBy( xpath = "//android.widget.ImageView[@content-desc=\"App logo\"]")
     public WebElement SFDBannerDisplay;
     @AndroidFindBy( xpath = "//android.view.View[@content-desc=\"Dear Didimoni poster\"]")
     public WebElement SFDBannerClick;
@@ -66,6 +66,8 @@ public class HomeScreenPages extends BasePage {
     public WebElement closeSheet;
     @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Close\"]")
     public  WebElement CloseAddButton;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Explore Unlimited Shows\"]")
+    public WebElement subscriptionCancel;
 
 
 
@@ -104,13 +106,17 @@ public class HomeScreenPages extends BasePage {
             WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
             el.click();
 
-            System.out.println("✅ clickIfPresent: ");
+            System.out.println("clickIfPresent: ");
         } catch (Exception e) {
-            System.out.println("⚠️ clickIfPresent: ");
+            System.out.println("clickIfPresent: ");
         }
     }
     public void CloseAddIfPresent(){
         clickIfPresent(CloseAddButton);
+    }
+
+    public void CloseSubscriptionRecommendation(){
+        clickIfPresent(subscriptionCancel);
     }
 
 

@@ -7,7 +7,10 @@ import io.appium.java_client.ios.IOSDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.hu.De;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -20,6 +23,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 public class Hooks {
     private AppiumDriver driver;
@@ -35,7 +39,7 @@ public class Hooks {
         context.credsLoader = new CredsLoader();
         context.configLoader = new ConfigLoader();
         context.scenario = scenario;
-        initializeDriver();
+        initializeDriver(context.scenario);
         context.driver = driver;
 
         // Initialize all pages
@@ -57,7 +61,7 @@ public class Hooks {
     }
 
     @After
-    public void tearDown(Scenario scenario) throws IOException {
+    public void tearDown(Scenario scenario) {
         if (scenario.isFailed() && driver != null) {
             try {
                 File sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -67,14 +71,23 @@ public class Hooks {
                 System.out.println("Could not capture screenshot: " + e.getMessage());
             }
         }
-
-        if (driver != null) {
-            driver.quit();
-            driver = null; // prevents re-use of dead driver
+        try {
+            if (driver != null) {
+                // Mark session status explicitly
+                JavascriptExecutor jse = (JavascriptExecutor) driver;
+                String status = scenario.isFailed() ? "failed" : "passed";
+                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\""
+                        + status + "\", \"reason\": \"" + scenario.getName() + "\"}}");
+            }
+        } finally {
+            if (driver != null) {
+                driver.quit();
+                driver = null;
+            }
         }
     }
 
-    public void initializeDriver() throws MalformedURLException {
+    public void initializeDriver(Scenario scenario) throws MalformedURLException {
         System.out.println("driver initialization started******************");
         executionMode = System.getProperty("executionMode", "local");
         String platformName = System.getProperty("platformName", "Android");
@@ -106,25 +119,21 @@ public class Hooks {
         } else if (executionMode.equalsIgnoreCase("BrowserStack")) {
 
             DesiredCapabilities caps = new DesiredCapabilities();
+            HashMap<String, Object> bstackOptions = new HashMap<>();
+
+            bstackOptions.put("userName", "surendirann_fSY3yt");
+            bstackOptions.put("accessKey", "CXn5s7q3XrBut1cgXpkP");
+
+            bstackOptions.put("deviceName", "Samsung Galaxy S22");
+            bstackOptions.put("osVersion", "12.0");
+
+            bstackOptions.put("consoleLogs", "info");
+            bstackOptions.put("buildName", "Mobile_UI_Tests_2");
+            bstackOptions.put("sessionName", scenario.getName());
 
             caps.setCapability("platformName", "Android");
-            caps.setCapability("deviceName", "Google Pixel 7");
-            caps.setCapability("platformVersion", "13.0");
-            caps.setCapability("appium:automationName", "UiAutomator2");
-            caps.setCapability("appium:newCommandTimeout", 300);
-
-            // BrowserStack uploaded app ID
-            caps.setCapability("app", System.getProperty("appId", "bs://c6d5196f76dd2c9e326d5b278283a306e7f6b758"));
-
-
-            // BrowserStack credentials (from Jenkins)
-//            caps.setCapability("browserstack.user", System.getenv("BROWSERSTACK_USER"));
-//            caps.setCapability("browserstack.key", System.getenv("BROWSERSTACK_KEY"));
-
-            // Optional metadata
-            caps.setCapability("project", "Bullet Automation");
-            caps.setCapability("build", "Bullet Android Build");
-            caps.setCapability("name", context.scenario.getName());
+            caps.setCapability("appium:app", "bs://daa97e69abceedf7d719bc402388578e3e3e2f9e");
+            caps.setCapability("bstack:options", bstackOptions);
 
             driver = new AndroidDriver(
                     new URL("https://hub-cloud.browserstack.com/wd/hub"),

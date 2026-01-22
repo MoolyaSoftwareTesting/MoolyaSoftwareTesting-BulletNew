@@ -134,7 +134,7 @@ public class ShowScreenPages extends BasePage {
         try {
             boolean scrolled = wait.until(driver -> {
                 String currentId = ((RemoteWebElement) CurrentTrailerCell).getId();
-                return !currentId.equals(firstId);  // ✅ Wait until ID changes
+                return !currentId.equals(firstId);  //  Wait until ID changes
             });
 
             String newId = ((RemoteWebElement) CurrentTrailerCell).getId();
@@ -153,9 +153,9 @@ public class ShowScreenPages extends BasePage {
             WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
             el.click();
 
-            System.out.println("✅ clickIfPresent: ");
+            System.out.println("clickIfPresent: ");
         } catch (Exception e) {
-            System.out.println("⚠️ clickIfPresent: ");
+            System.out.println("clickIfPresent: ");
         }
     }
 
@@ -177,7 +177,7 @@ public class ShowScreenPages extends BasePage {
             try {
                 Runtime.getRuntime().exec("adb shell input keyevent 24"); // 24 = KEYCODE_VOLUME_UP
             } catch (Exception e) {
-                throw new RuntimeException("❌ Failed to press volume up: " + e.getMessage());
+                throw new RuntimeException("Failed to press volume up: " + e.getMessage());
             }
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
         }
@@ -188,7 +188,7 @@ public class ShowScreenPages extends BasePage {
             try {
                 Runtime.getRuntime().exec("adb shell input keyevent 25"); // 25 = KEYCODE_VOLUME_DOWN
             } catch (Exception e) {
-                throw new RuntimeException("❌ Failed to press volume down: " + e.getMessage());
+                throw new RuntimeException("Failed to press volume down: " + e.getMessage());
             }
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
         }
@@ -213,15 +213,15 @@ public class ShowScreenPages extends BasePage {
                 String textValue = textElement.getText();
 
                 if (textValue != null && (textValue.contains("S1") || textValue.contains("E1"))) {
-                    System.out.println("✅ Found matching static text: " + textValue);
+                    System.out.println("Found matching static text: " + textValue);
                     return true;
                 }
             }
 
-            System.out.println("❌ No static text found containing 'S1' or 'E1'.");
+            System.out.println("No static text found containing 'S1' or 'E1'.");
             return false;
         } catch (Exception e) {
-            System.out.println("⚠️ Exception while verifying episode text: " + e.getMessage());
+            System.out.println("Exception while verifying episode text: " + e.getMessage());
             return false;
         }
     }
@@ -289,7 +289,7 @@ public class ShowScreenPages extends BasePage {
     }
     public void scrollDown() {
         if (!(driver instanceof AndroidDriver)) {
-            throw new UnsupportedOperationException("❌ scrollDown() is only supported on Android");
+            throw new UnsupportedOperationException("scrollDown() is only supported on Android");
         }
 
         Dimension size = driver.manage().window().getSize();
@@ -315,7 +315,7 @@ public class ShowScreenPages extends BasePage {
 
     public void scrollUp() {
         if (!(driver instanceof AndroidDriver)) {
-            throw new UnsupportedOperationException("❌ scrollUp() is only supported on Android");
+            throw new UnsupportedOperationException("scrollUp() is only supported on Android");
         }
 
         Dimension size = driver.manage().window().getSize();

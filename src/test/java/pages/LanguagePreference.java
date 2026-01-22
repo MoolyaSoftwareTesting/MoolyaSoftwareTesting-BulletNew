@@ -63,9 +63,9 @@ public class LanguagePreference extends BasePage{
             WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
             el.click();
 
-            System.out.println("✅ clickIfPresent: ");
+            System.out.println("clickIfPresent: ");
         } catch (Exception e) {
-            System.out.println("⚠️ clickIfPresent: ");
+            System.out.println("clickIfPresent: ");
         }
     }
 

@@ -1,19 +1,15 @@
-Feature: Language Preference Screen Feature
+Feature: Home Screen Feature
 
   @BulletTest @TC_021  @Home
   Scenario Outline: TES124 Verify Home tab in the bottom nav bar and watch banner of SFD series/season
-    Given User is on home screen
     Given User should select the language preference for new user
     Then User should select add button after selecting the language
-    Then User should click on Home navigation icon
-    Then User should click on Profile Icon
     When User click on <Mobile Number> Text Box And Enter The Number
-    Then User Enter The OTP Number
-    And User should See Profile Picture
-    And User click on profile cancel icon
+    Then User Enter the OTP Number in the respective field
+    Then User should click on Home navigation icon
+    Then User should cancel the subscription preview
     Then User should click on Home navigation icon
     Then User should see the banners for SFD series
-
 
     Examples:
       | Mobile Number |
@@ -63,20 +59,12 @@ Feature: Language Preference Screen Feature
   Scenario Outline: TES128 Verify the bottom nav bar options and redirections
     Given User should select the language preference for new user
     Then User should select add button after selecting the language
-    Then User should click on Home navigation icon
-    Then User should click on Profile Icon
     When User click on <Mobile Number> Text Box And Enter The Number
-    Then User Enter The OTP Number
-    And User should See Profile Picture
-    And User click on profile cancel icon
+    Then User Enter the OTP Number in the respective field
     Then User should click on Home navigation icon
     Then User should see the banners for SFD series
     Then User should click on Explore navigation icon
-#    Then User should verify whether landed on explore screen
     Then User should click on My List icon
-    Then User should click on Wallet icon
-    Then User should verify whether landed on Wallet screen
-
 
     Examples:
       | Mobile Number |
@@ -86,12 +74,8 @@ Feature: Language Preference Screen Feature
   Scenario Outline: TES129 Verify top nav bar options and redirections
     Given User should select the language preference for new user
     Then User should select add button after selecting the language
-    Then User should click on Home navigation icon
-    Then User should click on Profile Icon
     When User click on <Mobile Number> Text Box And Enter The Number
-    Then User Enter The OTP Number
-    And User should See Profile Picture
-    And User click on profile cancel icon
+    Then User Enter the OTP Number in the respective field
     Then User should click on Home navigation icon
     Then User should see the banners for SFD series
     Then User should click on search icon
@@ -99,7 +83,6 @@ Feature: Language Preference Screen Feature
     Then User should click on cancel icon
     Then User should click on Profile Icon
     Then user should verify whether landed on profile icon page
-    Then User should click on cancel icon
 
     Examples:
       | Mobile Number |

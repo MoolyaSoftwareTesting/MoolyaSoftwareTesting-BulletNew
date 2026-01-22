@@ -23,14 +23,14 @@ public class EmailNavigatorPage {
             ((AndroidDriver) driver).activateApp("com.google.android.gm");
             Thread.sleep(3000);
 
-            // ✅ Click on the first email in the inbox
+            // Click on the first email in the inbox
             WebElement firstEmail = driver.findElement(By.xpath(
                     "//android.view.ViewGroup[@resource-id='com.google.android.gm:id/conversation_list_item']"
             ));
             firstEmail.click();
             Thread.sleep(2000);
 
-            // ✅ Get all text elements inside the email body
+            // Get all text elements inside the email body
             List<WebElement> emailTexts = driver.findElements(
                     By.className("android.widget.TextView")
             );
@@ -48,14 +48,14 @@ public class EmailNavigatorPage {
             }
 
             if (otp == null) {
-                throw new RuntimeException("❌ OTP not found in Gmail email body.");
+                throw new RuntimeException("OTP not found in Gmail email body.");
             }
 
-            System.out.println("✅ OTP from Gmail: " + otp);
+            System.out.println("OTP from Gmail: " + otp);
             return otp;
 
         } catch (Exception ex) {
-            throw new RuntimeException("❌ Failed to retrieve OTP from Gmail: " + ex.getMessage(), ex);
+            throw new RuntimeException("Failed to retrieve OTP from Gmail: " + ex.getMessage(), ex);
         }
     }
 }

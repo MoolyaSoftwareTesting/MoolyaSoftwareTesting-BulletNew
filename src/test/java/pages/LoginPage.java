@@ -322,7 +322,7 @@ public class LoginPage extends BasePage {
             WebElement otpField = driver.findElement(By.xpath("//android.widget.EditText"));
             otpField.sendKeys(otp);
 
-            System.out.println("✅ OTP entered successfully: " + otp);
+            System.out.println("OTP entered successfully: " + otp);
 
         } catch (Exception e) {
             throw new RuntimeException("Failed to enter OTP in Bullet app (Android): " + e.getMessage(), e);

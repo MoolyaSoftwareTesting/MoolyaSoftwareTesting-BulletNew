@@ -148,5 +148,8 @@ public class HomeScreenStepDefs {
     }
 
 
-
+    @Then("User should cancel the subscription preview")
+    public void userShouldCancelTheSubscriptionPreview() {
+        context.homeScreenPages.CloseSubscriptionRecommendation();
+    }
 }

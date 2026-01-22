@@ -37,20 +37,20 @@ public class LikeUnlikePages extends BasePage{
     public void tapIfElementNotVisibleClickElement(WebElement element) {
         try {
             if (element.isDisplayed()) {
-                System.out.println("✅ Element is visible. No need to tap.");
+                System.out.println("Element is visible. No need to tap.");
                 click(element);
             } else {
-                System.out.println("⚠️ Element not visible. Performing tap on screen...");
+                System.out.println("Element not visible. Performing tap on screen...");
                 tapOnScreen();
                 click(element);
                 System.out.println("Clicked element");
             }
         } catch (NoSuchElementException e) {
-            System.out.println("⚠️ Element not found. Performing tap on screen...");
+            System.out.println("Element not found. Performing tap on screen...");
             tapOnScreen();
             click(element);
         } catch (Exception e) {
-            System.err.println("❌ Error while checking element visibility: " + e.getMessage());
+            System.err.println("Error while checking element visibility: " + e.getMessage());
             tapOnScreen();
             click(element);
         }
@@ -82,10 +82,10 @@ public class LikeUnlikePages extends BasePage{
             // Perform tap
             driver.perform(Collections.singletonList(tap));
 
-            System.out.println("👆 Tapped on screen at (" + x + "," + y + ") to reveal controls.");
+            System.out.println("Tapped on screen at (" + x + "," + y + ") to reveal controls.");
 
         } catch (Exception e) {
-            System.err.println("❌ Failed to tap on screen: " + e.getMessage());
+            System.err.println("Failed to tap on screen: " + e.getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ public class LikeUnlikePages extends BasePage{
 
     public void scrollDown() {
         if (!(driver instanceof AndroidDriver)) {
-            throw new UnsupportedOperationException("❌ scrollDown() is only supported on Android");
+            throw new UnsupportedOperationException("scrollDown() is only supported on Android");
         }
 
         Dimension size = driver.manage().window().getSize();

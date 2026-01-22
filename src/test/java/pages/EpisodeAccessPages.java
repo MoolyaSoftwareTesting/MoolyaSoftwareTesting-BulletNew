@@ -111,19 +111,19 @@ public class EpisodeAccessPages extends BasePage {
         List<WebElement> locksTab1 = driver.findElements(By.xpath(lockXPath));
         if (!locksTab1.isEmpty()) {
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath(lockXPath))).click();
-            System.out.println("🔓 Clicked lock in Tab 1");
+            System.out.println("Clicked lock in Tab 1");
         } else {
             // --- Step 3: Switch to Tab 2 ---
             driver.findElement(By.xpath(tab2XPath)).click();
-            System.out.println("➡️ Switched to Tab 2");
+            System.out.println("Switched to Tab 2");
 
             // --- Step 4: Check for lock in Tab 2 ---
             List<WebElement> locksTab2 = driver.findElements(By.xpath(lockXPath));
             if (!locksTab2.isEmpty()) {
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath(lockXPath))).click();
-                System.out.println("🔓 Clicked lock in Tab 2");
+                System.out.println("Clicked lock in Tab 2");
             } else {
-                System.out.println("⚠️ No lock found in either tab");
+                System.out.println("No lock found in either tab");
             }
         }
     }
@@ -201,7 +201,7 @@ public class EpisodeAccessPages extends BasePage {
         System.out.println("Tapped outside popup to close it.");
 
         synchronized (driver) {
-            driver.wait(5000); // ✅ works now
+            driver.wait(5000); // works now
         }
     }
 
@@ -252,20 +252,20 @@ public class EpisodeAccessPages extends BasePage {
     public void tapIfElementNotVisibleClickElement(WebElement element) {
         try {
             if (element.isDisplayed()) {
-                System.out.println("✅ Element is visible. No need to tap.");
+                System.out.println("Element is visible. No need to tap.");
                 click(element);
             } else {
-                System.out.println("⚠️ Element not visible. Performing tap on screen...");
+                System.out.println("Element not visible. Performing tap on screen...");
                 tapOnScreen();
                 click(element);
                 System.out.println("Clicked element");
             }
         } catch (NoSuchElementException e) {
-            System.out.println("⚠️ Element not found. Performing tap on screen...");
+            System.out.println("Element not found. Performing tap on screen...");
             tapOnScreen();
             click(element);
         } catch (Exception e) {
-            System.err.println("❌ Error while checking element visibility: " + e.getMessage());
+            System.err.println("Error while checking element visibility: " + e.getMessage());
             tapOnScreen();
             click(element);
         }
@@ -293,10 +293,10 @@ public class EpisodeAccessPages extends BasePage {
             // Perform tap
             driver.perform(Collections.singletonList(tap));
 
-            System.out.println("👆 Tapped on screen at (" + x + "," + y + ") to reveal controls.");
+            System.out.println("Tapped on screen at (" + x + "," + y + ") to reveal controls.");
 
         } catch (Exception e) {
-            System.err.println("❌ Failed to tap on screen: " + e.getMessage());
+            System.err.println("Failed to tap on screen: " + e.getMessage());
         }
     }
 }
