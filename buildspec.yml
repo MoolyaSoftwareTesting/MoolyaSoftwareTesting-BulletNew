@@ -1,0 +1,51 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    BS_USERNAME: "browserstack/username"
+    BS_ACCESS_KEY: "browserstack/access_key"
+    CREDS_FILE: "mobile/creds"
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+    commands:
+      - mvn -version
+
+  pre_build:
+    commands:
+      # Write creds file from Secrets Manager into workspace
+      - echo "$CREDS_FILE" > creds.properties
+
+      # Load app URL passed from previous stage artifact
+      - |
+        if [ -f android_env.properties ]; then
+          source android_env.properties
+          export APP_PATH=$ANDROID_APP_URL
+        fi
+
+  build:
+    commands:
+      - echo "Running automation with runtime parameters"
+
+      - mvn test \
+        -Dcucumber.filter.tags="$CUCUMBER_TAGS" \
+        -Denv="$ENV" \
+        -Ddataproviderthreadcount="$THREAD_COUNT" \
+        -DcredsFilePath="creds.properties" \
+        -DexecutionMode="$EXECUTION_MODE" \
+        -DappPath="$APP_PATH" \
+        -DdeviceName="$DEVICE_NAME" \
+        -DplatformVersion="$PLATFORM_VERSION" \
+        -DplatformName="$PLATFORM_NAME"
+
+reports:
+  junit:
+    files:
+      - target/surefire-reports/*.xml
+
+artifacts:
+  files:
+    - target/reports/**
+
