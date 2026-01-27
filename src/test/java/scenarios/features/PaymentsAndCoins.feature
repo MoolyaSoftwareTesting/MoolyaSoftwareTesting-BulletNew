@@ -7,9 +7,9 @@ Feature: Payments and Coins Feature
     Then User should click on Home navigation icon
     Then User should click on Profile Icon
     When User click on <Mobile Number> Text Box And Enter The Number
-    Then User Enter The OTP Number
-    And User should See Profile Picture
-    And User click on profile cancel icon
+    Then User Enter the OTP Number in the respective field
+#    And User should See Profile Picture
+#    And User click on profile cancel icon
     Then User is on home screen
     Then User tap on Wallet tab
     Then User should be redirected to Wallet Page

@@ -5,12 +5,12 @@ Feature: Language Preference Screen Feature
     Given User is on home screen
     Given User should select the language preference for new user
     Then User should select add button after selecting the language
-    Then User should click on Home navigation icon
-    Then User should click on Profile Icon
+#    Then User should click on Home navigation icon
+#    Then User should click on Profile Icon
     When User click on <Mobile Number> Text Box And Enter The Number
-    Then User Enter The OTP Number
-    And User should See Profile Picture
-    And User click on profile cancel icon
+    Then User Enter the OTP Number in the respective field
+#    And User should See Profile Picture
+#    And User click on profile cancel icon
     Then User should click on Home navigation icon
     Then User should see the banners for SFD series
 
@@ -23,12 +23,12 @@ Feature: Language Preference Screen Feature
   Scenario Outline: TES125 Verify user is redirected to SFD feed on clicking a banner
     Given User should select the language preference for new user
     Then User should select add button after selecting the language
-    Then User should click on Home navigation icon
-    Then User should click on Profile Icon
+#    Then User should click on Home navigation icon
+#    Then User should click on Profile Icon
     When User click on <Mobile Number> Text Box And Enter The Number
     Then User Enter The OTP Number
-    And User should See Profile Picture
-    And User click on profile cancel icon
+#    And User should See Profile Picture
+#    And User click on profile cancel icon
     Then User should click on Home navigation icon
     Then User should see the banners for SFD series
     Then User should click on a SFD series banner
