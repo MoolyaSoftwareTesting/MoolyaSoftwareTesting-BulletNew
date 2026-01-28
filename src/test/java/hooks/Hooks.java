@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.hu.De;
 import org.apache.commons.io.FileUtils;
@@ -22,16 +23,27 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Hooks {
     private AppiumDriver driver;
     private String executionMode;
     private final TestContext context;
+    private static String buildName;
 
     public Hooks(TestContext context) {
         this.context = context;
+    }
+
+    @BeforeAll
+    public static void suiteSetUp() {
+        Date dateNow = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMddhhmm");
+        String datetime = dateFormat.format(dateNow);
+        buildName = "mobile-sdk-tests-" + datetime;
     }
 
     @Before
@@ -116,23 +128,24 @@ public class Hooks {
                 driver = new IOSDriver(new URL("http://localhost:4723"), capabilities);
             }
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
+
         } else if (executionMode.equalsIgnoreCase("BrowserStack")) {
 
             DesiredCapabilities caps = new DesiredCapabilities();
             HashMap<String, Object> bstackOptions = new HashMap<>();
 
-            bstackOptions.put("userName", "surendirann_fSY3yt");
-            bstackOptions.put("accessKey", "CXn5s7q3XrBut1cgXpkP");
+            bstackOptions.put("userName", System.getProperty("browserstackUser"));
+            bstackOptions.put("accessKey", System.getProperty("browserstackKey"));
 
-            bstackOptions.put("deviceName", "Samsung Galaxy S22");
-            bstackOptions.put("osVersion", "12.0");
+            bstackOptions.put("deviceName", System.getProperty("deviceName"));
+            bstackOptions.put("osVersion", System.getProperty("platformVersion"));
 
             bstackOptions.put("consoleLogs", "info");
-            bstackOptions.put("buildName", "Mobile_UI_Tests_2");
+            bstackOptions.put("buildName", buildName);
             bstackOptions.put("sessionName", scenario.getName());
 
-            caps.setCapability("platformName", "Android");
-            caps.setCapability("appium:app", "bs://daa97e69abceedf7d719bc402388578e3e3e2f9e");
+            caps.setCapability("platformName", System.getProperty("platformName"));
+            caps.setCapability("appium:app", System.getProperty("appPath"));
             caps.setCapability("bstack:options", bstackOptions);
 
             driver = new AndroidDriver(
