@@ -1,0 +1,37 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+    commands:
+      - mvn -version
+  pre_build:
+    commands:
+      # Load app URL passed from previous stage artifact
+      - |
+        if [ -f android_env.properties ]; then
+          source android_env.properties
+          export APP_PATH=$ANDROID_APP_URL
+        fi
+  build:
+    commands:
+      - echo "Running automation with runtime parameters"
+      - mvn test \
+        -Dcucumber.filter.tags="$CUCUMBER_TAGS" \
+        -Denv="$ENV" \
+        -Ddataproviderthreadcount="$THREAD_COUNT" \
+        -DcredsFilePath="$CREDS_FILE" \
+        -DexecutionMode="$EXECUTION_MODE" \
+        -DappPath="$APP_PATH" \
+        -DdeviceName="$DEVICE_NAME" \
+        -DplatformVersion="$PLATFORM_VERSION" \
+        -DbrowserstackUser=$BS_USERNAME \
+        -DbrowserstackKey=$BS_ACCESS_KEY \
+        -DplatformName="$PLATFORM_NAME"
+reports:
+  junit:
+    files:
+      - target/surefire-reports/*.xml
+artifacts:
+  files:
+    - target/reports/**

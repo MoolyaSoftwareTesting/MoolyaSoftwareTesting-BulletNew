@@ -2,6 +2,7 @@ package scenarios.stepDefinitions;
 
 import context.TestContext;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,4 +32,6 @@ public class WelcomeStepdefs {
     public void userClickTheWelcomeArrows() {
        welcomePage.clickWelcomeArrow();
     }
+
+
 }
