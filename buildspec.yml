@@ -25,8 +25,8 @@ phases:
         -DappPath="$APP_PATH" \
         -DdeviceName="$DEVICE_NAME" \
         -DplatformVersion="$PLATFORM_VERSION" \
-        -DbrowserstackUser="$BS_USERNAME" \
-        -DbrowserstackKey="$BS_ACCESS_KEY" \
+        -DbrowserstackUser=$BS_USERNAME \
+        -DbrowserstackKey=$BS_ACCESS_KEY \
         -DplatformName="$PLATFORM_NAME"
 reports:
   junit:
