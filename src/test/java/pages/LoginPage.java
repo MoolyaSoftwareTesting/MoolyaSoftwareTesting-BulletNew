@@ -149,18 +149,31 @@ public class LoginPage extends BasePage {
     }
 
     public void otpEntry() {
-        click(otpField);
+        try {
+            // Use By locator instead of WebElement to avoid LinkedHashMap issue
+            By otpLocator = By.xpath("//android.widget.TextView[@text='Enter OTP']");
 
-// cast to AndroidDriver
-        AndroidDriver androidDriver = (AndroidDriver) this.driver;
+            // Wait until OTP field is visible and clickable
+            wait.until(ExpectedConditions.visibilityOfElementLocated(otpLocator));
+            wait.until(ExpectedConditions.elementToBeClickable(otpLocator));
 
-// send OTP digit by digit
-        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_9));
-        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_8));
-        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_7));
-        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_3));
+            // Click the OTP field using By locator
+            driver.findElement(otpLocator).click();
 
+            // Cast to AndroidDriver for key presses
+            AndroidDriver androidDriver = (AndroidDriver) this.driver;
+
+            // Enter OTP digit by digit
+            androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_9));
+            androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_8));
+            androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_7));
+            androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_3));
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to enter OTP: " + e.getMessage(), e);
+        }
     }
+
 
     public boolean isOTPfieldisDisplayed() {
         return isElementPresent(OtpField);
