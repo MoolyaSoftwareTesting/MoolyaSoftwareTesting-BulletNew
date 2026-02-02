@@ -164,6 +164,9 @@ public class Hooks {
             caps.setCapability("appium:app",
                     System.getProperty("appPath", System.getenv("APP_PATH")));
 
+            caps.setCapability("appium:autoGrantPermissions", true);
+            caps.setCapability("appium:autoAcceptAlerts", true);
+
             caps.setCapability("bstack:options", bstackOptions);
 
             driver = new AndroidDriver(

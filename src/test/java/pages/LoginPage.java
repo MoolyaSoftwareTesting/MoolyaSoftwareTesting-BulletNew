@@ -148,7 +148,8 @@ public class LoginPage extends BasePage {
     }
 
     public void otpEntry() {
-        click(OtpField);
+        wait.until(ExpectedConditions.visibilityOf(OtpField));
+        OtpField.click();
 
 // cast to AndroidDriver
         AndroidDriver driver = (AndroidDriver) this.driver;
