@@ -27,7 +27,7 @@ public class BasePage {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(35));
         PageFactory.initElements(
-                new AppiumFieldDecorator(driver, Duration.ofSeconds(10)),
+                new AppiumFieldDecorator(driver, Duration.ofSeconds(20)),
                 this
         );
     }
