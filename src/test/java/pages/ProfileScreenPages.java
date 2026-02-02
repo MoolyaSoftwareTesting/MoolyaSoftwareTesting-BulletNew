@@ -20,7 +20,7 @@ public class ProfileScreenPages extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"UID:\"]")
     public WebElement nameWithId;
 
-    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Placeholder image\"]")
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"User profile picture\"]")
     public WebElement profilePhoto;
 
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Edit profile\"]")
@@ -35,7 +35,7 @@ public class ProfileScreenPages extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"My Watchlist\"]")
     public WebElement myWatchlist;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"App Settings\"]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"App Settings\"]\n")
     public WebElement appSettings;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Language Preferences\"]")

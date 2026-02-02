@@ -20,7 +20,9 @@ Feature: Home Screen Feature
     Given User should select the language preference for new user
     Then User should select add button after selecting the language
     When User click on <Mobile Number> Text Box And Enter The Number
-    Then User Enter The OTP Number
+    Then User Enter the OTP Number in the respective field
+    Then User should click on Home navigation icon
+    Then User should cancel the subscription preview
     Then User should click on Home navigation icon
     Then User should see the banners for SFD series
     Then User should click on a SFD series banner

@@ -6,10 +6,8 @@ Feature: Login Feature
   Scenario Outline:TES117 Verify if user is able to login with mobile number
     Given User should select the language preference for new user
     Then User should select add button after selecting the language
-    Then User should click on Home navigation icon
-    Then User should click on Profile Icon
     When User click on <Mobile Number> Text Box And Enter The Number
-    Then User Enter The OTP Number
+    Then User Enter the OTP Number in the respective field
 
     Examples:
       | Mobile Number |
@@ -20,8 +18,6 @@ Feature: Login Feature
   Scenario Outline: TES116 Verify whether user is able to sign up with email ID
     Given User should select the language preference for new user
     Then User should select add button after selecting the language
-    Then User should click on Home navigation icon
-    Then User should click on Profile Icon
     Then User should select email icon
     Then User click on <EmailID> text box
     And User retrieve OTP from Gmail

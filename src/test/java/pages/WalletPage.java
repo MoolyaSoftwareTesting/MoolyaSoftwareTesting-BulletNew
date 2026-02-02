@@ -25,7 +25,7 @@ public class WalletPage extends BasePage{
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Search\"]")
     public WebElement SearchIcon;
 
-    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Profile\"]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Profile\"]")
     public WebElement ProfileIcon;
 
     @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View[1]")

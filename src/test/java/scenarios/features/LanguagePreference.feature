@@ -2,11 +2,7 @@ Feature: Language Preference Screen Feature
 
   @BulletTest @TC_102
   Scenario Outline:TES205 Verify new user is able to select Language Preference by logging with mobile number
-    #Given User click the arrow button
-    When User click on <Mobile Number> Text Box And Enter The Number
-    Then User Enter the OTP Number in the respective field
-    #Then User should see the login bonus coins
-    Then User should select the language preference for new user
+    Given User should select the language preference for new user
     Then User should select add button after selecting the language
 
     Examples:

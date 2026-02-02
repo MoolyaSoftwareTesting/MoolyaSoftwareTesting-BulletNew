@@ -4,12 +4,10 @@ Feature: Search Feature
   Scenario Outline: TES195 Verify user is able to see search icon on home page
     Given User should select the language preference for new user
     Then User should select add button after selecting the language
-    Then User should click on Home navigation icon
-    Then User should click on Profile Icon
     When User click on <Mobile Number> Text Box And Enter The Number
-    Then User Enter The OTP Number
-    And User should See Profile Picture
-    And User click on profile cancel icon
+    Then User Enter the OTP Number in the respective field
+    Then User should click on Home navigation icon
+    Then User should cancel the subscription preview
     Then User should click on Home navigation icon
     And User should See Search Icon
 

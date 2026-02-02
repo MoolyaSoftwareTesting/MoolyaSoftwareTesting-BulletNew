@@ -5,12 +5,10 @@ Feature: Show Screen Feature
   Scenario Outline:TES138 Verify the trailer screen
     Given User should select the language preference for new user
     Then User should select add button after selecting the language
-    Then User should click on Home navigation icon
-    Then User should click on Profile Icon
     When User click on <Mobile Number> Text Box And Enter The Number
-    Then User Enter The OTP Number
-    And User should See Profile Picture
-    And User click on profile cancel icon
+    Then User Enter the OTP Number in the respective field
+    Then User should click on Home navigation icon
+    Then User should cancel the subscription preview
     And User Clicked  on the Explore Tab in Home
     And User should see the Start Button and Episodes Button
     And User should see The Watchlist buton

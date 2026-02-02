@@ -30,7 +30,7 @@ public class LanguagePrefStepDefs {
 
     @Then("User should select the language preference for new user")
     public void userShouldSelectTheLanguagePreferenceForNewUser() {
-        context.languagePreference.CloseAddIfPresent();
+//        context.languagePreference.CloseAddIfPresent();
         languagePreference.languageSelectforNewUsers();
     }
 

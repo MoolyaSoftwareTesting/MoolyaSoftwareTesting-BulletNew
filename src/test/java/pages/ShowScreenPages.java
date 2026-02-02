@@ -47,6 +47,9 @@ public class ShowScreenPages extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Episodes\"]")
     public WebElement episodeView;
 
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Close\"]")
+    public  WebElement CloseAddButton;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"START\"]")
     public WebElement startViewText;
 
@@ -109,6 +112,10 @@ public class ShowScreenPages extends BasePage {
 
     public boolean isExpisodeAndStartButtonDisplayed() {
         return isElementPresent(episodeView) && isElementPresent(startViewText);
+    }
+
+    public void CloseAddIfPresent(){
+        clickIfPresent(CloseAddButton);
     }
 
     public boolean isWatchlistButtonDisplayed() {

@@ -30,9 +30,9 @@ public class HomeScreenPages extends BasePage {
     public WebElement HomeNavClick;
     @AndroidFindBy( xpath = "//android.widget.ImageView[@content-desc=\"App logo\"]")
     public WebElement SFDBannerDisplay;
-    @AndroidFindBy( xpath = "//android.view.View[@content-desc=\"Dear Didimoni poster\"]")
+    @AndroidFindBy( xpath = "//android.widget.TextView[@text=\"WATCH NOW\"]")
     public WebElement SFDBannerClick;
-    @AndroidFindBy( xpath = "//android.widget.FrameLayout[@resource-id=\"com.bulletshorts:id/exo_subtitles\"]/android.view.View")
+    @AndroidFindBy( xpath = "//android.view.View[@content-desc=\"Back\"]")
     public WebElement relatedEpisodeVerify;
     @AndroidFindBy( xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View[1]")
     public WebElement horizontalRail;
@@ -68,6 +68,8 @@ public class HomeScreenPages extends BasePage {
     public  WebElement CloseAddButton;
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Explore Unlimited Shows\"]")
     public WebElement subscriptionCancel;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Close\"]")
+    public WebElement blackAddClose;
 
 
 
@@ -116,6 +118,7 @@ public class HomeScreenPages extends BasePage {
     }
 
     public void CloseSubscriptionRecommendation(){
+        clickIfPresent(blackAddClose);
         clickIfPresent(subscriptionCancel);
     }
 

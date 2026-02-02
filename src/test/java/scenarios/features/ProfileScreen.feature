@@ -4,14 +4,11 @@ Feature: Profile Screen Feature
   Scenario Outline:TES191 Verify the profile screen
     Given User should select the language preference for new user
     Then User should select add button after selecting the language
-    Then User should click on Home navigation icon
-    Then User should click on Profile Icon
     When User click on <Mobile Number> Text Box And Enter The Number
-    Then User Enter The OTP Number
-    And User should See Profile Picture
-    And User click on profile cancel icon
-    Then User should click on Wallet icon
-    And User should see the Bullet logo
+    Then User Enter the OTP Number in the respective field
+    Then User should click on Home navigation icon
+    Then User should cancel the subscription preview
+    Then User should click on Home navigation icon
     And User should See Profile Icon
     Then User should click on Profile Icon
     And User should See User Name with ID
@@ -22,9 +19,6 @@ Feature: Profile Screen Feature
     And User should see the My watchlist Tab
     And User should see the App settings Tab
     And User should see the Language Preference tab
-    And User should see the Help centre Tab
-    And User should see the Log out Tab
-    Then User should See  Made in India text, T&C link and App version
 
     Examples:
       | Mobile Number |

@@ -84,19 +84,28 @@ public class Hooks {
             }
         }
         try {
-            if (driver != null) {
-                // Mark session status explicitly
+            if (driver != null &&
+                    "browserstack".equalsIgnoreCase(System.getProperty("executionMode"))) {
+
                 JavascriptExecutor jse = (JavascriptExecutor) driver;
                 String status = scenario.isFailed() ? "failed" : "passed";
-                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\""
-                        + status + "\", \"reason\": \"" + scenario.getName() + "\"}}");
+
+                jse.executeScript(
+                        "browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\""
+                                + status + "\", \"reason\": \"" + scenario.getName() + "\"}}"
+                );
             }
-        } finally {
+
+        } catch (Exception e) {
+            System.out.println("Skipping BrowserStack session status update: " + e.getMessage());
+        }
+        finally {
             if (driver != null) {
                 driver.quit();
                 driver = null;
             }
         }
+
     }
 
     public void initializeDriver(Scenario scenario) throws MalformedURLException {

@@ -40,6 +40,7 @@ public class ShowScreenStepDefs {
 
     @And("User should see the Start Button and Episodes Button")
     public void userShouldSeeTheStartButtonAndEpisodesButton() {
+        showScreen.understandClick();
         Assert.assertTrue(showScreen.isExpisodeAndStartButtonDisplayed(),"Start button is not displayed");
     }
 
