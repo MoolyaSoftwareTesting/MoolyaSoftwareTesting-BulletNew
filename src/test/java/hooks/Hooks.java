@@ -27,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Hooks {
     private AppiumDriver driver;
@@ -98,8 +99,7 @@ public class Hooks {
 
         } catch (Exception e) {
             System.out.println("Skipping BrowserStack session status update: " + e.getMessage());
-        }
-        finally {
+        } finally {
             if (driver != null) {
                 driver.quit();
                 driver = null;
@@ -141,30 +141,28 @@ public class Hooks {
         } else if (executionMode.equalsIgnoreCase("BrowserStack")) {
 
             DesiredCapabilities caps = new DesiredCapabilities();
-            HashMap<String, Object> bstackOptions = new HashMap<>();
+            Map<String, Object> bstackOptions = new HashMap<>();
 
-//            bstackOptions.put("userName", System.getProperty("browserstackUser"));
-//            bstackOptions.put("accessKey", System.getProperty("browserstackKey"));
+            bstackOptions.put("userName",
+                    System.getProperty("browserstackUser", System.getenv("BS_USERNAME")));
+            bstackOptions.put("accessKey",
+                    System.getProperty("browserstackKey", System.getenv("BS_ACCESS_KEY")));
 
-//            bstackOptions.put("deviceName", System.getProperty("deviceName"));
-//            bstackOptions.put("osVersion", System.getProperty("platformVersion"));
+            bstackOptions.put("deviceName",
+                    System.getProperty("deviceName", System.getenv("DEVICE_NAME")));
+            bstackOptions.put("osVersion",
+                    System.getProperty("platformVersion", System.getenv("PLATFORM_VERSION")));
 
-//            caps.setCapability("platformName", System.getProperty("platformName"));
-//            caps.setCapability("appium:app", System.getenv("APP_PATH"));
-
-
-            bstackOptions.put("userName", System.getenv("BS_USERNAME"));
-            bstackOptions.put("accessKey", System.getenv("BS_ACCESS_KEY"));
-
-            bstackOptions.put("deviceName", System.getenv("DEVICE_NAME"));
-            bstackOptions.put("osVersion", System.getenv("PLATFORM_VERSION"));
-
-            caps.setCapability("platformName", System.getenv("PLATFORM_NAME"));
-            caps.setCapability("appium:app", System.getenv("APP_PATH"));
-
-            bstackOptions.put("consoleLogs", "info");
+            bstackOptions.put("projectName", "Regression");
             bstackOptions.put("buildName", buildName);
             bstackOptions.put("sessionName", scenario.getName());
+            bstackOptions.put("consoleLogs", "info");
+
+            caps.setCapability("platformName",
+                    System.getProperty("platformName", System.getenv("PLATFORM_NAME")));
+            caps.setCapability("appium:automationName", "UiAutomator2");
+            caps.setCapability("appium:app",
+                    System.getProperty("appPath", System.getenv("APP_PATH")));
 
             caps.setCapability("bstack:options", bstackOptions);
 
@@ -177,5 +175,13 @@ public class Hooks {
         }
 
         System.out.println("driver initialization completed******************");
+    }
+
+    private String getConfig(String key) {
+        String value = System.getProperty(key);
+        if (value == null || value.isBlank()) {
+            value = System.getenv(key);
+        }
+        return value;
     }
 }
