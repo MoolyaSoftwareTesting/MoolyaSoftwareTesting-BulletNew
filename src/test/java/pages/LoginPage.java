@@ -19,65 +19,65 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LoginPage extends BasePage {
-    @AndroidFindBy( xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View")
+    @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View")
     public WebElement arrowTick;
     @AndroidFindBy(xpath = "//android.widget.EditText")
     public WebElement mobileNum;
-    @AndroidFindBy (xpath = "//android.view.View[@content-desc=\"Submit phone number\"]")
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Submit phone number\"]")
     public WebElement nextArrow;
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Enter OTP\"]")
     public WebElement otp;
-    @AndroidFindBy (xpath = "//android.widget.Button[@resource-id=\"com.google.android.gms:id/positive_button\"]")
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id=\"com.google.android.gms:id/positive_button\"]")
     public WebElement otpAllowButton;
     @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[1]/android.view.View")
     public WebElement HindiSelect;
-    @AndroidFindBy (xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View")
+    @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View")
     public WebElement KannadaSelect;
-    @AndroidFindBy (xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[3]/android.view.View")
+    @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[3]/android.view.View")
     public WebElement TamilSelect;
-    @AndroidFindBy (xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[4]/android.view.View")
+    @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[4]/android.view.View")
     public WebElement TeluguSelect;
-    @AndroidFindBy (xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[5]/android.view.View")
+    @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[5]/android.view.View")
     public WebElement MalayalamSelect;
-    @AndroidFindBy (xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[6]/android.view.View")
+    @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[6]/android.view.View")
     public WebElement MarathiSelect;
-    @AndroidFindBy (xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[7]/android.view.View")
+    @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[7]/android.view.View")
     public WebElement BengaliSelect;
-    @AndroidFindBy (xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[8]/android.view.View")
+    @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[8]/android.view.View")
     public WebElement EnglishSelect;
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text=\"Tap to add preferences\"]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Tap to add preferences\"]")
     public WebElement addPreferenceButton;
-    @AndroidFindBy (xpath = "//android.view.View[@content-desc=\"Switch to Email\"]")
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Switch to Email\"]")
     public WebElement emailIcon;
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text=\"Enter OTP\"]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Enter OTP\"]")
     public WebElement OtpField;
-    @AndroidFindBy (xpath = "//android.view.View[@content-desc=\"Signin with google\"]")
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Signin with google\"]")
     public WebElement googleIcon;
-    @AndroidFindBy (xpath = "(//android.widget.LinearLayout[@resource-id=\"com.google.android.gms:id/container\"])[1]/android.widget.LinearLayout")
+    @AndroidFindBy(xpath = "(//android.widget.LinearLayout[@resource-id=\"com.google.android.gms:id/container\"])[1]/android.widget.LinearLayout")
     public WebElement googleAccountSelect;
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text=\"RESEND\"]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"RESEND\"]")
     public WebElement resendButton;
-    @AndroidFindBy (xpath = "//android.widget.Toast[@text=\"Either OTP is not valid or has expired\"]")
+    @AndroidFindBy(xpath = "//android.widget.Toast[@text=\"Either OTP is not valid or has expired\"]")
     public WebElement otpTextValidation;
-    @AndroidFindBy (xpath = "//android.widget.EditText")
+    @AndroidFindBy(xpath = "//android.widget.EditText")
     public WebElement emailTextField;
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text=\"or\"]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"or\"]")
     public WebElement orText;
-    @AndroidFindBy (xpath="//android.widget.TextView[contains(@text,'Terms of Use & Privacy Policy')]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Terms of Use & Privacy Policy')]")
     public WebElement termsConditions;
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text=\"Terms of Use\"]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Terms of Use\"]")
     public WebElement termsOfUse;
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text=\"30 when you sign up!\"]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"30 when you sign up!\"]")
     public WebElement signInBonusBanner;
-    @AndroidFindBy (xpath = "//android.view.View[@content-desc=\"Back\"]")
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Back\"]")
     public WebElement backArrowClick;
 
-    public LoginPage(AppiumDriver driver){
+    public LoginPage(AppiumDriver driver) {
         super(driver);
 
     }
 
-//    public boolean isElementPresent(WebElement locator) {
+    //    public boolean isElementPresent(WebElement locator) {
 //        try {
 //            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 //            return wait.until(ExpectedConditions.presenceOfElementLocated((By) locator)).isDisplayed();
@@ -90,30 +90,31 @@ public class LoginPage extends BasePage {
         click(arrowTick);
     }
 
-    public void enterMobileNum(String mobileNumber){
+    public void enterMobileNum(String mobileNumber) {
 
-        enterTextOnElement(mobileNum,mobileNumber);
+        enterTextOnElement(mobileNum, mobileNumber);
 
-        }
+    }
 
-        public void enterTextInMail(String mail){
+    public void enterTextInMail(String mail) {
         enterTextOnElement(emailTextField, mail);
-        }
+    }
 
-        public boolean isMobileNumberDisplayed(){
-            return isElementPresent((WebElement) mobileNum);
+    public boolean isMobileNumberDisplayed() {
+        return isElementPresent((WebElement) mobileNum);
 
-        }
+    }
 
-    public void clickNextArrow(){
+    public void clickNextArrow() {
 
         click(nextArrow);
     }
-    public void clickOTP(){
+
+    public void clickOTP() {
         click(otpAllowButton);
     }
 
-    public void selectLanguagePreference(){
+    public void selectLanguagePreference() {
         click(HindiSelect);
         click(KannadaSelect);
         click(TamilSelect);
@@ -124,32 +125,31 @@ public class LoginPage extends BasePage {
         click(EnglishSelect);
     }
 
-    public void languageAddButton(){
+    public void languageAddButton() {
 
         click(addPreferenceButton);
     }
 
-    public boolean isLanguageAddButtonDisplayed(){
+    public boolean isLanguageAddButtonDisplayed() {
         return isElementPresent(addPreferenceButton);
 
     }
 
-    public void emailIconClick(){
+    public void emailIconClick() {
 
         click(emailIcon);
     }
 
-    public boolean OTPFieldVisible(){
+    public boolean OTPFieldVisible() {
         return isElementPresent(OtpField);
     }
 
-    public void OTPCLick(){
+    public void OTPCLick() {
         click(OtpField);
     }
 
     public void otpEntry() {
-        wait.until(ExpectedConditions.visibilityOf(OtpField));
-        OtpField.click();
+        click(OtpField);
 
 // cast to AndroidDriver
         AndroidDriver driver = (AndroidDriver) this.driver;
@@ -163,20 +163,20 @@ public class LoginPage extends BasePage {
 
     }
 
-    public boolean isOTPfieldisDisplayed(){
+    public boolean isOTPfieldisDisplayed() {
         return isElementPresent(OtpField);
     }
 
-    public void googleIconClick(){
+    public void googleIconClick() {
         click(googleIcon);
     }
 
-    public void googleAccountSelection(){
+    public void googleAccountSelection() {
 
         click(googleAccountSelect);
     }
 
-    public boolean isGoogleAccountSelectisDisplayed(){
+    public boolean isGoogleAccountSelectisDisplayed() {
         return isElementPresent(googleAccountSelect);
     }
 
@@ -186,7 +186,7 @@ public class LoginPage extends BasePage {
 
     }
 
-    public void wrongOtpEntry(){
+    public void wrongOtpEntry() {
 
         driver.findElement(By.xpath("//android.widget.TextView[@text=\"Enter OTP\"]")).click();
 // cast to AndroidDriver
@@ -211,7 +211,7 @@ public class LoginPage extends BasePage {
 //        driver.quit();
     }
 
-    public void mobileNumberValidation(){
+    public void mobileNumberValidation() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 // Wait until the toast appears
         WebElement toast = wait.until(
@@ -226,7 +226,7 @@ public class LoginPage extends BasePage {
         driver.quit();
     }
 
-    public void otpResentSuccessfullyMessageReader(){
+    public void otpResentSuccessfullyMessageReader() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 // Wait until the toast appears
         WebElement toast = wait.until(
@@ -241,7 +241,7 @@ public class LoginPage extends BasePage {
         driver.quit();
     }
 
-    public void emailTextField(String EmailField){
+    public void emailTextField(String EmailField) {
         click(emailTextField);
 
         // cast to AndroidDriver
@@ -270,8 +270,6 @@ public class LoginPage extends BasePage {
         driver.pressKey(new KeyEvent(AndroidKey.C));
         driver.pressKey(new KeyEvent(AndroidKey.O));
         driver.pressKey(new KeyEvent(AndroidKey.M));
-
-
 
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -329,27 +327,27 @@ public class LoginPage extends BasePage {
         }
     }
 
-    public boolean isArrowKeyDisplayed(){
+    public boolean isArrowKeyDisplayed() {
         return isElementPresent(orText);
     }
 
-    public boolean isTermsDisplayed(){
+    public boolean isTermsDisplayed() {
         return isElementPresent(termsConditions);
     }
 
-    public void clickTermsConditions(){
+    public void clickTermsConditions() {
         click(termsConditions);
     }
 
-    public boolean isTermsOfUseDisplayed(){
+    public boolean isTermsOfUseDisplayed() {
         return isElementPresent(termsOfUse);
     }
 
-    public boolean isSigninBonusBannerDisplayed(){
+    public boolean isSigninBonusBannerDisplayed() {
         return isElementPresent(signInBonusBanner);
     }
 
-    public void backButtonClick(){
+    public void backButtonClick() {
         click(backArrowClick);
     }
 
