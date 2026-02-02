@@ -70,6 +70,8 @@ public class LoginPage extends BasePage {
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Back\"]")
     public WebElement backArrowClick;
 
+    private By otpField = By.xpath("//android.widget.TextView[@text=\"Enter OTP\"]");
+
     public LoginPage(AppiumDriver driver) {
         super(driver);
 
@@ -143,11 +145,11 @@ public class LoginPage extends BasePage {
     }
 
     public void OTPCLick() {
-        click(OtpField);
+        click(otpField);
     }
 
     public void otpEntry() {
-        click(OtpField);
+        click(otpField);
 
 // cast to AndroidDriver
         AndroidDriver androidDriver = (AndroidDriver) this.driver;
@@ -184,8 +186,8 @@ public class LoginPage extends BasePage {
     }
 
     public void wrongOtpEntry() {
-        waitForVisibility(OtpField);
-        click(OtpField);
+        waitForVisibility(otpField);
+        click(otpField);
 // cast to AndroidDriver
         AndroidDriver androidDriver = (AndroidDriver) this.driver;
 // send OTP digit by digit
