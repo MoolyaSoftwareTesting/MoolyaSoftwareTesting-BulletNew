@@ -56,7 +56,7 @@ public class BasePage {
     }
 
     public void clear(By element) {
-        WebElement ele = (WebElement) driver.findElement(element);
+        WebElement ele = driver.findElement(element);
         waitForVisibility(ele);
         ele.clear();
     }
@@ -64,14 +64,6 @@ public class BasePage {
     public void clear(WebElement element) {
         waitForVisibility(element);
         element.clear();
-    }
-
-    public void sendKeys(String txt) {
-        By element = null;
-        waitForVisibility(element);
-        WebElement ele = driver.findElement(element);
-        clear(element);
-        ele.sendKeys(txt);
     }
 
     public void sendKeys(WebElement element, String txt) {
@@ -90,15 +82,9 @@ public class BasePage {
         element.click();
     }
 
-    public void getText(WebElement element) {
+    public String getText(WebElement element) {
         waitForVisibility(element);
-        element.getText();
-    }
-
-    public String getAttribute(By element, String attribute) {
-        WebElement ele = (WebElement) driver.findElement(element);
-        waitForVisibility(ele);
-        return ele.getAttribute(attribute);
+        return element.getText();
     }
 
     public String getAttribute(WebElement element, String attribute) {
@@ -194,14 +180,6 @@ public class BasePage {
 //        driver.context(contextName);
     }
 
-    public static <T> T getNestedValue(Map map, String... keys) {
-        Object value = map;
-        for (String key : keys) {
-            value = ((Map) value).get(key);
-        }
-        return (T) value;
-    }
-
     public String generateDate(String dateFormat, int dateDiff) {
         Date dt = new Date();
         Calendar c = Calendar.getInstance();
@@ -240,15 +218,4 @@ public class BasePage {
 
     }
 
-    public void scroll(String direction,Double percent) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("left", 200);
-        params.put("top", 500);
-        params.put("width", 800);
-        params.put("height", 1500);
-        params.put("direction", direction);
-        params.put("percent",percent);
-        params.put("speed", 1000);
-        driver.executeScript("mobile: swipeGesture", params);
-    }
 }

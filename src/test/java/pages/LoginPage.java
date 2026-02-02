@@ -25,8 +25,6 @@ public class LoginPage extends BasePage {
     public WebElement mobileNum;
     @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Submit phone number\"]")
     public WebElement nextArrow;
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Enter OTP\"]")
-    public WebElement otp;
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id=\"com.google.android.gms:id/positive_button\"]")
     public WebElement otpAllowButton;
     @AndroidFindBy(xpath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View[1]/android.view.View")
@@ -152,14 +150,13 @@ public class LoginPage extends BasePage {
         click(OtpField);
 
 // cast to AndroidDriver
-        AndroidDriver driver = (AndroidDriver) this.driver;
+        AndroidDriver androidDriver = (AndroidDriver) this.driver;
 
 // send OTP digit by digit
-        driver.pressKey(new KeyEvent(AndroidKey.DIGIT_9));
-        driver.pressKey(new KeyEvent(AndroidKey.DIGIT_8));
-        driver.pressKey(new KeyEvent(AndroidKey.DIGIT_7));
-        driver.pressKey(new KeyEvent(AndroidKey.DIGIT_3));
-
+        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_9));
+        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_8));
+        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_7));
+        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_3));
 
     }
 
@@ -187,15 +184,15 @@ public class LoginPage extends BasePage {
     }
 
     public void wrongOtpEntry() {
-
-        driver.findElement(By.xpath("//android.widget.TextView[@text=\"Enter OTP\"]")).click();
+        waitForVisibility(OtpField);
+        click(OtpField);
 // cast to AndroidDriver
-        AndroidDriver driver = (AndroidDriver) this.driver;
+        AndroidDriver androidDriver = (AndroidDriver) this.driver;
 // send OTP digit by digit
-        driver.pressKey(new KeyEvent(AndroidKey.DIGIT_0));
-        driver.pressKey(new KeyEvent(AndroidKey.DIGIT_5));
-        driver.pressKey(new KeyEvent(AndroidKey.DIGIT_6));
-        driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_0));
+        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_5));
+        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_6));
+        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 // Wait until the toast appears
