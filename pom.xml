@@ -18,7 +18,6 @@
         <version.cucumber-java>7.18.0</version.cucumber-java>
         <version.selenium-java>4.21.0</version.selenium-java>
         <version.io.rest-assured>4.4.0</version.io.rest-assured>
-        <version.lombok>1.18.34</version.lombok>
         <version.io.appium.java-client>9.2.3</version.io.appium.java-client>
         <version.surefire>3.0.0-M5</version.surefire>
         <threadCount>1</threadCount>
@@ -199,10 +198,6 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
       <groupId>com.browserstack</groupId>
