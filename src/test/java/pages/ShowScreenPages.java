@@ -29,7 +29,6 @@ import java.util.Map;
 public class ShowScreenPages extends BasePage {
     public ShowScreenPages(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Explore\"]")

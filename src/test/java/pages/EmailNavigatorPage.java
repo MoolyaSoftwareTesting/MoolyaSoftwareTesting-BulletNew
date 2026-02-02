@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EmailNavigatorPage {
+public class EmailNavigatorPage extends BasePage {
 
     private AppiumDriver driver;
 
     public EmailNavigatorPage(AppiumDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public String retrieveOtpFromGmail() {

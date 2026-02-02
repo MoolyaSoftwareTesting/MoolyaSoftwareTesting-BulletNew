@@ -65,7 +65,6 @@ public class PaymentsAndCoinsPages extends BasePage{
 
     public PaymentsAndCoinsPages(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     public boolean isCompleteTasksAndEarnCoinsDisplayed(){

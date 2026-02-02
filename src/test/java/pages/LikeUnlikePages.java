@@ -32,7 +32,6 @@ public class LikeUnlikePages extends BasePage{
 
     public LikeUnlikePages(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
     public void tapIfElementNotVisibleClickElement(WebElement element) {
         try {

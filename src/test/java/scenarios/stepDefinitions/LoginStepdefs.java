@@ -44,8 +44,6 @@ public class LoginStepdefs {
     @When("User click on {} Text Box And Enter The Number")
     public void user_Click_onTextBoxAndEnterTheNumber(String mobileNumber) throws InterruptedException {
         loginPage.enterMobileNum(mobileNumber);
-        //loginPage.clickNextArrow();
-
     }
 
     @Then("User Click on the arrow button")

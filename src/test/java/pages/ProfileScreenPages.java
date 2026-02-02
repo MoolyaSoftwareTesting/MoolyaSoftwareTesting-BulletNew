@@ -59,7 +59,6 @@ public class ProfileScreenPages extends BasePage {
 
     public ProfileScreenPages(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
     }
 

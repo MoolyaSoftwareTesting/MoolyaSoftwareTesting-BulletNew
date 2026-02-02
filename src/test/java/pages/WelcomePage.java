@@ -17,7 +17,6 @@ public class WelcomePage extends BasePage {
 
     public WelcomePage(AppiumDriver driver){
             super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
     }
 

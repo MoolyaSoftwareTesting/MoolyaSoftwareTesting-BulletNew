@@ -3,9 +3,11 @@
 /allure-results/*
 /allure-report/*
 /log/*
+/logs/*
 /screenshots/*
 /drivers/*
 automation.iml
 *.iml
 *.DS_Store
 *.log
+*.logs

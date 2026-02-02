@@ -31,7 +31,6 @@ public class WatchlistPages extends BasePage{
 
     public WatchlistPages(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
     public void myListClick(){
         click(myListClick);

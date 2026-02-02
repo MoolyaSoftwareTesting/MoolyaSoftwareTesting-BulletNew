@@ -26,6 +26,7 @@ import java.time.Duration;
 import java.util.*;
 
 public class HomeScreenPages extends BasePage {
+
     @AndroidFindBy( xpath = "//android.widget.TextView[@text=\"Home\"]")
     public WebElement HomeNavClick;
     @AndroidFindBy( xpath = "//android.widget.ImageView[@content-desc=\"App logo\"]")
@@ -71,15 +72,8 @@ public class HomeScreenPages extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Close\"]")
     public WebElement blackAddClose;
 
-
-
-
-
-
-
     public HomeScreenPages(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
     }
 

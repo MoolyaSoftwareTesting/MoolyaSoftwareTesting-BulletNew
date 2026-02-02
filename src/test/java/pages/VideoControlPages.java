@@ -54,7 +54,6 @@ public class VideoControlPages extends BasePage{
 
     public VideoControlPages(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     public void playbackPauseIcon(){

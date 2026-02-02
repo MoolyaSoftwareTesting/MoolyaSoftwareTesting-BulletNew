@@ -77,7 +77,6 @@ public class EpisodeAccessPages extends BasePage {
 
     public EpisodeAccessPages(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     public boolean isUnlockVideoPopupDisplayed() {

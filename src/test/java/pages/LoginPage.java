@@ -74,7 +74,6 @@ public class LoginPage extends BasePage {
 
     public LoginPage(AppiumDriver driver){
         super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
     }
 

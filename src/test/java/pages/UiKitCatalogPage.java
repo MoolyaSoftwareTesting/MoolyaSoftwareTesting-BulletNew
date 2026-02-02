@@ -42,7 +42,6 @@ public class UiKitCatalogPage extends BasePage {
 
     public UiKitCatalogPage(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     public void clickOnAlertViews() {

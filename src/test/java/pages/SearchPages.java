@@ -38,7 +38,6 @@ public class SearchPages extends BasePage{
 
     public SearchPages(AppiumDriver driver) {
         super(driver);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 
     }
 
