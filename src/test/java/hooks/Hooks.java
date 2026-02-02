@@ -143,18 +143,29 @@ public class Hooks {
             DesiredCapabilities caps = new DesiredCapabilities();
             HashMap<String, Object> bstackOptions = new HashMap<>();
 
-            bstackOptions.put("userName", System.getProperty("browserstackUser"));
-            bstackOptions.put("accessKey", System.getProperty("browserstackKey"));
+//            bstackOptions.put("userName", System.getProperty("browserstackUser"));
+//            bstackOptions.put("accessKey", System.getProperty("browserstackKey"));
 
-            bstackOptions.put("deviceName", System.getProperty("deviceName"));
-            bstackOptions.put("osVersion", System.getProperty("platformVersion"));
+//            bstackOptions.put("deviceName", System.getProperty("deviceName"));
+//            bstackOptions.put("osVersion", System.getProperty("platformVersion"));
+
+//            caps.setCapability("platformName", System.getProperty("platformName"));
+//            caps.setCapability("appium:app", System.getenv("APP_PATH"));
+
+
+            bstackOptions.put("userName", System.getenv("BS_USERNAME"));
+            bstackOptions.put("accessKey", System.getenv("BS_ACCESS_KEY"));
+
+            bstackOptions.put("deviceName", System.getenv("DEVICE_NAME"));
+            bstackOptions.put("osVersion", System.getenv("PLATFORM_VERSION"));
+
+            caps.setCapability("platformName", System.getenv("PLATFORM_NAME"));
+            caps.setCapability("appium:app", System.getenv("APP_PATH"));
 
             bstackOptions.put("consoleLogs", "info");
             bstackOptions.put("buildName", buildName);
             bstackOptions.put("sessionName", scenario.getName());
 
-            caps.setCapability("platformName", System.getProperty("platformName"));
-            caps.setCapability("appium:app", System.getProperty("appPath"));
             caps.setCapability("bstack:options", bstackOptions);
 
             driver = new AndroidDriver(
