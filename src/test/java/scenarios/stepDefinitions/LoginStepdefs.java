@@ -80,7 +80,7 @@ public class LoginStepdefs {
 
     @Then("User Enter the OTP Number in the respective field")
     public void userEnterTheOTPNumberInTheRespectiveField() {
-//        Assert.assertTrue(loginPage.isOTPfieldisDisplayed(),"Otp entry field is not visible");
+        Assert.assertTrue(loginPage.isOTPfieldisDisplayed(),"Otp entry field is not visible");
         loginPage.otpEntry();
     }
 

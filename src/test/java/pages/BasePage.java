@@ -210,7 +210,6 @@ public class BasePage {
     }
     public boolean isElementPresent(WebElement element) {
         try {
-//            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             return element.isDisplayed();
         } catch (Exception e) {
             return false;
